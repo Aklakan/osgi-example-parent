@@ -7,6 +7,6 @@ public class GreetingServiceB
 {
 	@Override
 	public String getGreetingMessage(String name) {
-		return "Be welcome " + name;
+		return "Be welcome, " + name;
 	}
 }

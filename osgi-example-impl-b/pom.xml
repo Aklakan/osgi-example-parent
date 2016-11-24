@@ -25,31 +25,16 @@
 						<Embed-Transitive>true</Embed-Transitive>
 						<Bundle-Activator>org.aksw.osgi_example.impl.b.Activator</Bundle-Activator>
 						<Import-Package>
-							*;resolution:=optional,org.osgi.framework,!fr.inrialpes.tyrexmo.testqc.simple
+							*;resolution:=optional,org.osgi.framework
 						</Import-Package>
-						<!-- org.aksw.sparqlqc.api, -->
-						<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
-						<!-- <Export-Package>org.aksw.qcwrapper.jsa</Export-Package> -->
-						<!-- <Export-Package>{local-packages}</Export-Package> -->
-						<!-- <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath> -->
-
-						<!-- <Import-Package>;resolution:=optional,org.osgi.framework</Import-Package> -->
-						<!-- <Export-Package>${bundle.dynamicImport.package}</Export-Package> -->
-						<!-- <Export-Package>{local-packages}</Export-Package> -->
-						<!-- <Export-Package>!org.aksw.qcwrapper.jsa.*</Export-Package> -->
-						<!-- <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency> -->
-						<!-- <_exportcontents>*</_exportcontents> -->
-						<!-- <Export-Package>org.aksw.qcwrapper.jsa</Export-Package> -->
-						<!-- <Import-Package>*</Import-Package> -->
-						<!-- <Include-Resource>{maven-resources}</Include-Resource> -->
-						<!-- <Private-Package>org.foo.myproject.*</Private-Package> -->
-						<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
-						<!-- <DynamicImport-Package>${bundle.dynamicImport.package}</DynamicImport-Package> -->
+<!-- 						<DynamicImport-Package>*</DynamicImport-Package> -->
+<!-- 						<Embed-StripVersion>true</Embed-StripVersion> -->
 					</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
+
 
 	<dependencies>
 		<dependency>

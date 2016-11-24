@@ -25,17 +25,15 @@ public class MainOsgiExample {
 			Map<String, String> config = new HashMap<String, String>();
 			config.put(Constants.FRAMEWORK_STORAGE_CLEAN, Constants.FRAMEWORK_STORAGE_CLEAN_ONFIRSTINIT);
 
-			config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, String.join(",",
-					"org.aksw.osgi_example.api;version=\"1.0.0\""
-			));
-
+			config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA,
+					String.join(",", "org.aksw.osgi_example.api;version=\"1.0.0\""));
 
 			List<File> jarFiles = Arrays.asList("a", "b").stream().map(implStr -> {
-				String jarPathStr = String.format("../osgi-example-impl-%1$s/target/osgi-example-impl-%1$s-1.0.0-SNAPSHOT.jar", implStr);
+				String jarPathStr = String
+						.format("../osgi-example-impl-%1$s/target/osgi-example-impl-%1$s-1.0.0-SNAPSHOT.jar", implStr);
 				File jarFile = new File(jarPathStr);
 				return jarFile;
 			}).collect(Collectors.toList());
-
 
 			Framework framework = frameworkFactory.newFramework(config);
 			try {
@@ -43,8 +41,8 @@ public class MainOsgiExample {
 				framework.start();
 				BundleContext context = framework.getBundleContext();
 
-				for(File jarFile : jarFiles) {
-					String jarFileStr =  jarFile.getAbsolutePath();
+				for (File jarFile : jarFiles) {
+					String jarFileStr = jarFile.getAbsolutePath();
 					System.out.println("Loading: " + jarFileStr);
 
 					Bundle bundle = context.installBundle("reference:file:" + jarFileStr);
@@ -68,12 +66,11 @@ public class MainOsgiExample {
 				framework.waitForStop(0);
 			}
 			System.out.println("Done.");
-		} catch(Exception e) {
-			// Note: The framework spawns 'felix resolver' threads that only die after a minute
-			// Force exit
+		} catch (Exception e) {
+			// Note: In case of an exception, the framework may have sleeping threads (e.g. 'felix resolver')
+			// that only die after a minute. We don't want to wait so force exit.
 			e.printStackTrace();
 			System.exit(0);
 		}
-		return;
 	}
 }

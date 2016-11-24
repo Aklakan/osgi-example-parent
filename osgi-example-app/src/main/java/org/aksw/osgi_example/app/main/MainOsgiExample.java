@@ -67,10 +67,11 @@ public class MainOsgiExample {
             }
             System.out.println("Done.");
         } catch (Exception e) {
-            // Note: In case of an exception, the framework may have sleeping threads (e.g. 'felix resolver')
-            // that only die after a minute. We don't want to wait so force exit.
             e.printStackTrace();
-            System.exit(0);
         }
+
+        // Note: Sometimes the framework may have sleeping threads (e.g. 'felix resolver')
+        // that only die after about a minute. We don't want to wait so force exit.
+        System.exit(0);
     }
 }

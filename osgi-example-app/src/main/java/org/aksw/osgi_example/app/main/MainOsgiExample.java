@@ -1,5 +1,6 @@
 package org.aksw.osgi_example.app.main;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -21,18 +22,13 @@ public class MainOsgiExample {
 		config.put(Constants.FRAMEWORK_STORAGE_CLEAN, Constants.FRAMEWORK_STORAGE_CLEAN_ONFIRSTINIT);
 		config.put(Constants.FRAMEWORK_BOOTDELEGATION, "*");
 
-		config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, String.join(",", "fr.inrialpes.tyrexmo.testqc.simple"));
-		// config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA,
-		// String.join(",",
-		// "fr.inrialpes.tyrexmo.testqc",
-		// "org.apache.jena.sparql.algebra",
-		// "org.apache.jena.query",
-		// "org.apache.jena.sparql.algebra.optimize",
-		// "org.apache.jena.sparql.syntax",
-		// "org.apache.jena.sparql.expr",
-		// "org.apache.jena.sparql.graph"));
-		// config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA,
-		// "fr.inrialpes.tyrexmo.testqc");
+		config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, String.join(",",
+				"org.aksw.osgi_example.api"
+		));
+
+		String jarFileStr = new File("../osgi-example-impl-a/target/osgi-example-impl-a-1.0.0-SNAPSHOT.jar").getAbsolutePath();
+		System.out.println("Loading file: " + jarFileStr);
+
 
 		Framework framework = frameworkFactory.newFramework(config);
 		try {
@@ -40,7 +36,7 @@ public class MainOsgiExample {
 			framework.start();
 			BundleContext context = framework.getBundleContext();
 			Bundle bundle = context.installBundle(
-					"reference:file:/home/raven/Projects/Eclipse/jena-sparql-api-parent/benchmarking/sparqlqc-jena3/sparqlqc-impl-jsa/target/sparqlqc-impl-jsa-1.0.0-SNAPSHOT.jar");
+					"reference:file:" + jarFileStr);
 			try {
 				bundle.start();
 

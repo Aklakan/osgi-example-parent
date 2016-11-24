@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>osgi-example-impl-b</artifactId>
+	<packaging>bundle</packaging>
+
+	<parent>
+		<groupId>org.aksw.osgi-example</groupId>
+		<artifactId>osgi-example-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>3.2.0</version>
+				<extensions>true</extensions>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>bundle</goal>
+						</goals>
+						<configuration>
+							<instructions>
+								<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+								<Embed-Transitive>true</Embed-Transitive>
+								<Bundle-Activator>org.aksw.qcwrapper.jsa.Activator</Bundle-Activator>
+								<Import-Package>
+									*;resolution:=optional,org.osgi.framework,!fr.inrialpes.tyrexmo.testqc.simple
+								</Import-Package>
+								<!-- org.aksw.sparqlqc.api, -->
+								<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
+								<!-- <Export-Package>org.aksw.qcwrapper.jsa</Export-Package> -->
+								<!-- <Export-Package>{local-packages}</Export-Package> -->
+								<!-- <Bundle-ClassPath>{maven-dependencies}</Bundle-ClassPath> -->
+
+								<!-- <Import-Package>;resolution:=optional,org.osgi.framework</Import-Package> -->
+								<!-- <Export-Package>${bundle.dynamicImport.package}</Export-Package> -->
+								<!-- <Export-Package>{local-packages}</Export-Package> -->
+								<!-- <Export-Package>!org.aksw.qcwrapper.jsa.*</Export-Package> -->
+								<!-- <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency> -->
+								<!-- <_exportcontents>*</_exportcontents> -->
+								<!-- <Export-Package>org.aksw.qcwrapper.jsa</Export-Package> -->
+								<!-- <Import-Package>*</Import-Package> -->
+								<!-- <Include-Resource>{maven-resources}</Include-Resource> -->
+								<!-- <Private-Package>org.foo.myproject.*</Private-Package> -->
+								<!-- <DynamicImport-Package>*</DynamicImport-Package> -->
+								<!-- <DynamicImport-Package>${bundle.dynamicImport.package}</DynamicImport-Package> -->
+							</instructions>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aksw.osgi-example</groupId>
+			<artifactId>osgi-example-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+</project>

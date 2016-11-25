@@ -1,52 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<artifactId>osgi-example-impl-b</artifactId>
-	<packaging>bundle</packaging>
+    <artifactId>osgi-example-impl-b</artifactId>
+    <packaging>bundle</packaging>
 
-	<parent>
-		<groupId>org.aksw.osgi-example</groupId>
-		<artifactId>osgi-example-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-	</parent>
+    <parent>
+        <groupId>org.aksw.osgi-example</groupId>
+        <artifactId>osgi-example-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<version>3.2.0</version>
-				<extensions>true</extensions>
-				<configuration>
-					<instructions>
-						<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
-						<Embed-Transitive>true</Embed-Transitive>
-						<Bundle-Activator>org.aksw.osgi_example.impl.b.Activator</Bundle-Activator>
-						<Import-Package>
-							*;resolution:=optional,org.osgi.framework
-						</Import-Package>
-<!-- 						<DynamicImport-Package>*</DynamicImport-Package> -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>3.2.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Embed-Transitive>true</Embed-Transitive>
+                        <Bundle-Activator>org.aksw.osgi_example.impl.b.Activator</Bundle-Activator>
+                        <Import-Package>*;resolution:=optional</Import-Package>
 <!-- 						<Embed-StripVersion>true</Embed-StripVersion> -->
-					</instructions>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
-	<dependencies>
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>org.osgi.core</artifactId>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
-		<dependency>
-			<groupId>org.aksw.osgi-example</groupId>
-			<artifactId>osgi-example-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.aksw.osgi-example</groupId>
+            <artifactId>osgi-example-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
 </project>

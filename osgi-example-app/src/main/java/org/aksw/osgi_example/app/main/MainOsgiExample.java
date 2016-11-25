@@ -25,8 +25,9 @@ public class MainOsgiExample {
             Map<String, String> config = new HashMap<String, String>();
             config.put(Constants.FRAMEWORK_STORAGE_CLEAN, Constants.FRAMEWORK_STORAGE_CLEAN_ONFIRSTINIT);
 
-            config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA,
-                    String.join(",", "org.aksw.osgi_example.api;version=\"1.0.0\""));
+            config.put(Constants.FRAMEWORK_SYSTEMPACKAGES_EXTRA, String.join(",",
+                    "org.aksw.osgi_example.api;version=\"1.0.0\""
+            ));
 
             List<File> jarFiles = Arrays.asList("a", "b").stream().map(implStr -> {
                 String jarPathStr = String
@@ -70,8 +71,10 @@ public class MainOsgiExample {
             e.printStackTrace();
         }
 
-        // Note: Sometimes the framework may have sleeping threads (e.g. 'felix resolver')
-        // that only die after about a minute. We don't want to wait so force exit.
+        // Note: Sometimes the framework may have sleeping threads (e.g. 'felix
+        // resolver')
+        // that only die after about a minute. We don't want to wait so force
+        // exit.
         System.exit(0);
     }
 }
